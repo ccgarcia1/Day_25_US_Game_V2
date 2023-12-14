@@ -22,11 +22,14 @@ guessed_states = []
 while len(guessed_states) < 50:
     answer_state = screen.textinput(title= f"Guess the State{len(guessed_states)}/50", prompt="What's another state's name?").upper()
     if answer_state == "EXIT":
-        #keeping the track of the missing states
-        missing_states = []
-        for state in all_states:
-            if state not in guessed_states:
-                missing_states.append(state)
+        # keeping the track of the missing states
+        # missing_states = []
+        # for state in all_states:
+        #    if state not in guessed_states:
+        #        missing_states.append(state)
+        # commented the lines above ^^^ to create a new logic using ListComprehension
+        missing_states = [state for state in all_states if state not in guessed_states]
+
         new_data = pandas.DataFrame(missing_states)
         new_data.to_csv("missing_states")
         break
